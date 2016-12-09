@@ -3,15 +3,19 @@ defmodule Day1Test do
   doctest Day1
 
   test "two steps" do
-    assert 5 == Day1.distance("R2, L3")
+    assert {5, nil} == Day1.distance("R2, L3")
   end
 
   test "three steps" do
-    assert 2 == Day1.distance("R2, R2, R2")
+    assert {2, nil} == Day1.distance("R2, R2, R2")
   end
 
   test "four steps" do
-    assert 12 == Day1.distance("R5, L5, R5, R3")
+    assert {12, nil} == Day1.distance("R5, L5, R5, R3")
+  end
+
+  test "duplicate path" do
+    assert {8, 4} == Day1.distance("R8, R4, R4, R8")
   end
 
   test "manhattan math" do

@@ -31,3 +31,9 @@ Then, you notice the instructions continue on the back of the Recruiting Documen
 For example, if your instructions are R8, R4, R4, R8, the first location you visit twice is 4 blocks away, due East.
 
 How many blocks away is the first location you visit twice?
+
+```
+  iex(53)> Day1.distance_file("input.txt")
+  Total path length: 161
+  Distance to first duplicated point: 110
+```
