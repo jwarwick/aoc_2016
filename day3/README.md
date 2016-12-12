@@ -11,3 +11,9 @@ The design document gives the side lengths of each triangle it describes, but...
 In a valid triangle, the sum of any two sides must be larger than the remaining side. For example, the "triangle" given above is impossible, because 5 + 10 is not larger than 25.
 
 In your puzzle input, how many of the listed triangles are possible?
+
+# Usage
+```
+  iex(1)> Day3.valid_count_file "input.txt"
+  995
+```
