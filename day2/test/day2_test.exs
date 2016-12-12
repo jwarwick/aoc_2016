@@ -25,4 +25,14 @@ defmodule Day2Test do
     """
     assert "19" == Day2.decode(str)
   end
+
+  test "sample input" do
+    str = """
+    ULL
+    RRDDD
+    LURDL
+    UUUUD
+    """
+    assert "1985" == Day2.decode(str)
+  end
 end
