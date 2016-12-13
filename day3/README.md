@@ -15,5 +15,5 @@ In your puzzle input, how many of the listed triangles are possible?
 # Usage
 ```
   iex(1)> Day3.valid_count_file "input.txt"
-  995
+  993
 ```

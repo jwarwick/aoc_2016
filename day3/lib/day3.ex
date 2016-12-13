@@ -40,6 +40,6 @@ defmodule Day3 do
     [test(a), test(b), test(c)]
   end
 
-  defp test({a, b, c}), do: a + b >= c
+  defp test({a, b, c}), do: a + b > c
 
 end
