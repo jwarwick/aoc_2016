@@ -3,6 +3,6 @@ defmodule Day5Test do
   doctest Day5
 
   test "sample input" do
-    assert "18f47a30" == Day5.generate_password("abc")
+    assert "05ace8e3" == Day5.generate_password("abc")
   end
 end
