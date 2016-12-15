@@ -15,17 +15,27 @@ defmodule Day4 do
   Return the sum of sector numbers for valid sectors
   """
   def decode_list(list) do
-    list
+    filtered = list
     |> Enum.map(&decode/1)
-    |> Enum.reduce(0, &valid_sector_numbers/2)
+    |> Enum.filter(fn %{checksum: cs, computed_checksum: computed} -> cs == computed end)
+    |> Enum.map(&decode_name/1)
+    |> Enum.sort(fn (%{name: n1}, %{name: n2}) -> n1 < n2 end)
+
+    Enum.each(filtered, fn %{name: n, sector: s} -> IO.puts "#{n} : #{s}" end)
+    Enum.reduce(filtered, 0, fn (%{sector: s}, acc) -> acc + s end)
   end
 
-  defp valid_sector_numbers(%{checksum: checksum, computed_checksum: computed, sector: sector}, acc) do
-    if checksum == computed do
-      acc + sector
-    else
-      acc
-    end
+  defp decode_name(m = %{sector: sector, name: name}) do
+    new_name =
+    name
+    |> String.to_charlist
+    |> Enum.map(&(shift_char(&1, sector)))
+    |> to_string
+    %{m | name: new_name}
+  end
+
+  defp shift_char(c, offset) do
+    rem((c - ?a) + offset, 26) + ?a
   end
 
   @doc """
