@@ -38,7 +38,7 @@ defmodule Day6 do
   defp map_max(map) do
     map
     |> Map.to_list
-    |> Enum.sort(fn ({_k1, v1}, {_k2, v2}) -> v1 >= v2 end)
+    |> Enum.sort(fn ({_k1, v1}, {_k2, v2}) -> v1 < v2 end)
     |> Enum.map(fn {key, _value} -> key end)
     |> hd
   end

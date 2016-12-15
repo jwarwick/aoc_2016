@@ -7,7 +7,7 @@ defmodule Day6Test do
   end
 
   test "three entries" do
-    assert "eedadn" == Day6.decode(["eedadn", "bbbbbb", "eedadn"])
+    assert "bbbbbb" == Day6.decode(["eedadn", "bbbbbb", "eedadn"])
   end
 
   test "example" do
@@ -29,6 +29,6 @@ defmodule Day6Test do
     dvrsen
     enarar
     )
-    assert "easter" == Day6.decode(list)
+    assert "advent" == Day6.decode(list)
   end
 end
