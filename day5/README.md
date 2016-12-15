@@ -18,3 +18,10 @@ In this example, after continuing this search a total of eight times, the passwo
 Given the actual Door ID, what is the password?
 
 Your puzzle input is ffykfhsq.
+
+# Usage
+
+```
+  iex(26)> Day5.generate_password("ffykfhsq")
+  "c6697b55"
+```
