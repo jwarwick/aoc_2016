@@ -14,4 +14,9 @@ aaaa[qwer]tyui does not support TLS (aaaa is invalid; the interior characters mu
 ioxxoj[asdfgh]zxcvbn supports TLS (oxxo is outside square brackets, even though it's within a larger string).
 How many IPs in your puzzle input support TLS?
 
+# Usage
 
+```
+  iex(1)> Day7.supports_abba_count_file "input.txt"
+  105
+```
