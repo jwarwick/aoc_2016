@@ -207,3 +207,111 @@ There seems to be an intermediate check of the voltage used by the display: afte
   rotate col: 1, 5
   116
 ```
+
+--- Part Two ---
+
+You notice that the screen is only capable of displaying capital letters; in the font it uses, each letter is 5 pixels wide and 6 tall.
+
+After you swipe your card, what code is the screen trying to display?
+
+# Usage
+
+```
+  iex(20)> Enum.each(0..11, &(Day8.display(board, &1 * 5, 5)))
+  [nil, " ", " ", nil, " "]
+  [nil, " ", " ", nil, " "]
+  [nil, " ", " ", nil, " "]
+  [nil, " ", " ", nil, " "]
+  [nil, " ", " ", nil, " "]
+  [" ", nil, nil, " ", " "]
+
+
+
+
+  [nil, nil, nil, " ", " "]
+  [nil, " ", " ", nil, " "]
+  [nil, " ", " ", nil, " "]
+  [nil, nil, nil, " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, " ", " ", " ", " "]
+
+
+
+
+  [" ", nil, nil, " ", " "]
+  [nil, " ", " ", nil, " "]
+  [nil, " ", " ", nil, " "]
+  [nil, " ", " ", nil, " "]
+  [nil, " ", " ", nil, " "]
+  [" ", nil, nil, " ", " "]
+
+
+
+
+  [" ", " ", nil, nil, " "]
+  [" ", " ", " ", nil, " "]
+  [" ", " ", " ", nil, " "]
+  [" ", " ", " ", nil, " "]
+  [nil, " ", " ", nil, " "]
+  [" ", nil, nil, " ", " "]
+
+
+
+
+  [nil, nil, nil, nil, " "]
+  [nil, " ", " ", " ", " "]
+  [nil, nil, nil, " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, " ", " ", " ", " "]
+
+
+
+
+  [nil, " ", " ", " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, nil, nil, nil, " "]
+
+
+
+
+  [nil, nil, nil, " ", " "]
+  [nil, " ", " ", nil, " "]
+  [nil, nil, nil, " ", " "]
+  [nil, " ", " ", nil, " "]
+  [nil, " ", " ", nil, " "]
+  [nil, nil, nil, " ", " "]
+
+
+
+
+  [" ", nil, nil, " ", " "]
+  [nil, " ", " ", nil, " "]
+  [nil, " ", " ", " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, " ", " ", nil, " "]
+  [" ", nil, nil, " ", " "]
+
+
+
+
+  [nil, nil, nil, nil, " "]
+  [nil, " ", " ", " ", " "]
+  [nil, nil, nil, " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, nil, nil, nil, " "]
+
+
+
+
+  [nil, nil, nil, nil, " "]
+  [" ", " ", " ", nil, " "]
+  [" ", " ", nil, " ", " "]
+  [" ", nil, " ", " ", " "]
+  [nil, " ", " ", " ", " "]
+  [nil, nil, nil, nil, " "]
+```

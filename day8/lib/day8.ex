@@ -13,9 +13,21 @@ defmodule Day8 do
     |> Enum.sum
   end
 
+  @doc """
+  Display part of the board
+  """
+  def display(board, start_col, count) do
+    board
+    |> Enum.map(&(Enum.slice(&1, start_col, count)))
+    |> Enum.map(&(Enum.map(&1, fn x -> if 1 == x, do: nil, else: " " end)))
+    |> Enum.each(&IO.inspect/1)
+    IO.puts "\n\n\n"
+  end
 
   @doc """
+  Run the given list of commands on an empty board
   """
+  def compute(commands), do: compute(@default_height, @default_width, commands)
   def compute(rows, columns, commands) do
     row = List.duplicate(0, columns)
     board = List.duplicate(row, rows)
