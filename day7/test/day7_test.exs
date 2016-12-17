@@ -3,20 +3,20 @@ defmodule Day7Test do
   doctest Day7
 
   test "simple" do
-    str = "abbac[mnopz]qrstu"
-    assert true == Day7.supports_abba?(str)
-    assert 1 == Day7.supports_abba_count([str])
+    str = "aba[bab]xyz"
+    assert true == Day7.supports_ssl?(str)
+    assert 1 == Day7.supports_ssl_count([str])
   end
 
-  test "in hypernet" do
-    assert false == Day7.supports_abba?("abcd[bddb]xyyx")
+  test "no BAB" do
+    assert false == Day7.supports_ssl?("xyx[xyx]xyx")
   end
 
-  test "duplicated chars" do
-    assert false == Day7.supports_abba?("aaaa[qwer]tyui")
+  test "reversed order" do
+    assert true == Day7.supports_ssl?("aaa[kek]eke")
   end
 
   test "in longer string" do
-    assert true == Day7.supports_abba?("ioxxoj[asdfgh]zxcvbn")
+    assert true == Day7.supports_ssl?("zazbz[bzb]cdb")
   end
 end
