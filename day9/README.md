@@ -18,3 +18,9 @@ A(2x2)BCD(2x2)EFG doubles the BC and EF, becoming ABCBCDEFEFG for a decompressed
 X(8x2)(3x3)ABCY becomes X(3x3)ABC(3x3)ABCY (for a decompressed length of 18), because the decompressed data from the (8x2) marker (the (3x3)ABC) is skipped and not processed further.
 What is the decompressed length of the file (your puzzle input)? Don't count whitespace.
 
+# Usage
+
+```
+  iex(6)> Day9.decompress_file "input.txt"
+  152851
+```
