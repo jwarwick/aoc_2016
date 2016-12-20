@@ -30,4 +30,9 @@ The above code would set register a to 41, increase its value by 2, decrease its
 
 After executing the assembunny code in your puzzle input, what value is left in register a?
 
+# Usage
 
+```
+  iex(3)> Day12.evaluate_file "input.txt"
+  %Day12.State{a: 318007, b: 196418, c: 0, d: 0, pc: 23}
+```
