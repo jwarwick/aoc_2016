@@ -54,7 +54,7 @@ defmodule Bot do
     {:noreply, bot}
   end
   def handle_cast({:new_value, value}, bot) do
-    IO.puts "#{inspect bot.name} got value #{inspect value}"
+    # IO.puts "#{inspect bot.name} got value #{inspect value}"
     bot = update_values(value, bot)
     bot = take_step(bot)
     {:noreply, bot}
@@ -79,7 +79,7 @@ defmodule Bot do
     values = [bot.value1, bot.value2] |> Enum.sort
     cmps = [bot.cmp1, bot.cmp2] |> Enum.sort
     test_cmps(bot, values, cmps)
-    IO.puts "#{inspect bot.name} sending values"
+    # IO.puts "#{inspect bot.name} sending values"
     Bot.send_value(bot.low, Enum.at(values, 0))
     Bot.send_value(bot.high, Enum.at(values, 1))
     %Bot{bot | value1: nil, value2: nil}

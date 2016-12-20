@@ -32,3 +32,9 @@ Based on your instructions, what is the number of the bot that is responsible fo
   iex> Day10.execute_file "input.txt"
   (Manual inspection of output...")
 ```
+
+--- Part Two ---
+
+What do you get if you multiply together the values of one chip in each of outputs 0, 1, and 2?
+
+Manual inspection of cleaned up output: 1209 (31 * 13 * 3)
