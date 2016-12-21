@@ -48,3 +48,9 @@ In ten rows, this larger example has 38 safe tiles.
 Starting with the map in your puzzle input, in a total of 40 rows (including the starting row), how many safe tiles are there?
 
 
+# Usage
+
+```
+  iex(3)> Day18.safe_count_file("input.txt", 40)
+  1951
+```
