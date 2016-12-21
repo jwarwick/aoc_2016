@@ -3,26 +3,22 @@ defmodule Day9Test do
   doctest Day9
 
   test "no markers" do
-    assert "ADVENT" == Day9.decompress("ADVENT")
+    assert 6 == Day9.decompress("ADVENT")
   end
 
   test "1 marker" do
-    assert "ABBBBBC" == Day9.decompress("A(1x5)BC")
+    assert 9 == Day9.decompress("(3x3)XYZ")
   end
 
-  test "start marker" do
-    assert "XYZXYZXYZ" == Day9.decompress("(3x3)XYZ")
+  test "double marker" do
+    assert 20 == Day9.decompress("X(8x2)(3x3)ABCY")
   end
 
-  test "two markers" do
-    assert "ABCBCDEFEFG" == Day9.decompress("A(2x2)BCD(2x2)EFG")
+  test "long" do
+    assert 241920 == Day9.decompress("(27x12)(20x12)(13x14)(7x10)(1x12)A")
   end
 
-  test "duplicate marker" do
-    assert "(1x3)A" == Day9.decompress("(6x1)(1x3)A")
-  end
-
-  test "multiple duplicates" do
-    assert "X(3x3)ABC(3x3)ABCY" == Day9.decompress("X(8x2)(3x3)ABCY")
+  test "sample" do
+    assert 445 == Day9.decompress("(25x3)(3x3)ABC(2x3)XY(5x2)PQRSTX(18x9)(3x2)TWO(5x7)SEVEN")
   end
 end
