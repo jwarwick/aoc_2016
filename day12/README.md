@@ -36,3 +36,10 @@ After executing the assembunny code in your puzzle input, what value is left in 
   iex(3)> Day12.evaluate_file "input.txt"
   %Day12.State{a: 318007, b: 196418, c: 0, d: 0, pc: 23}
 ```
+
+
+--- Part Two ---
+
+As you head down the fire escape to the monorail, you notice it didn't start; register c needs to be initialized to the position of the ignition key.
+
+If you instead initialize register c to be 1, what value is now left in register a?

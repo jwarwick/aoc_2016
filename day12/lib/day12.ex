@@ -4,7 +4,7 @@ defmodule Day12 do
   """
 
   defmodule State do
-    defstruct pc: 0, a: 0, b: 0, c: 0, d: 0
+    defstruct pc: 0, a: 0, b: 0, c: 1, d: 0
   end
 
   def evaluate_file(path) do
