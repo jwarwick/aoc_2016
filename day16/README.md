@@ -47,3 +47,10 @@ In this example, the correct checksum would therefore be 01100.
 The first disk you have to fill has length 272. Using the initial state in your puzzle input, what is the correct checksum?
 
 Your puzzle input is 10011111011011001.
+
+# Usage
+
+```
+  iex(1)> Day16.encode_checksum("10011111011011001", 272)
+  "10111110010110110"
+```
