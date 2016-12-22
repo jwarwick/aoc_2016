@@ -25,3 +25,10 @@ rotate based on position of letter d finds the index of letter d (4), then rotat
 After these steps, the resulting scrambled password is decab.
 
 Now, you just need to generate a new scrambled password and you can access the system. Given the list of scrambling operations in your puzzle input, what is the result of scrambling abcdefgh?
+
+# Usage
+
+```
+  iex(1)> Day21.encode_file "abcdefgh", "input.txt"
+  "bagefcdh"
+```
