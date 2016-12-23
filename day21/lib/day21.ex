@@ -17,7 +17,7 @@ defmodule Day21 do
     |> String.split("\n")
     |> Enum.map(&String.trim/1)
     |> Enum.map(&convert_cmds/1)
-    |> Enum.reduce(String.to_charlist(str), &execute/2)
+    |> Enum.reduce(String.to_charlist(str), &execute_wrapper/2)
     |> to_string
   end
 
@@ -61,6 +61,13 @@ defmodule Day21 do
     {:move_position, x, y}
   end
 
+  defp execute_wrapper(cmd, str) do
+    IO.puts "#{inspect str}  -> #{inspect cmd}"
+    result = execute(cmd, str)
+    IO.puts "#{inspect result}"
+    result
+  end
+
   defp execute({:swap_position, x, y}, str) do
     swap_index(str, x, y)
   end
@@ -76,7 +83,7 @@ defmodule Day21 do
     rotate_left(str, x)
   end
   defp execute({:rotate_right, x}, str) do
-    rotate_left(str, x)
+    rotate_right(str, x)
   end
   defp execute({:move_position, x, y}, str) do
     {v, list} = List.pop_at(str, x)
