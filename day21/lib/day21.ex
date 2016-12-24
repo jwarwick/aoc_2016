@@ -3,22 +3,57 @@ defmodule Day21 do
   Scrambling functions
   """
 
+  defmodule Permutations do
+    def of([]) do
+      [[]]
+    end
+
+    def of(list) do
+      for h <- list, t <- of(list -- [h]), do: [h | t]
+    end
+  end
+
   def encode_file(str, path) do
     encode(str, File.read!(path))
+  end
+
+  def decode_file(str, path) do
+    decode(str, File.read!(path))
+  end
+
+  def decode(str, cmds) do
+    charlist = String.to_charlist(str)
+    perms = Permutations.of(charlist)
+    cmds = parse_string(cmds)
+    input = test_inputs(perms, charlist, cmds, [])
+    IO.inspect input
+  end
+
+  defp test_inputs([], _, _, acc), do: acc
+  defp test_inputs([h | rest], charlist, cmds, acc) do
+    result = encode(h, cmds)
+    if result == charlist do
+      test_inputs(rest, charlist, cmds, [h | acc])
+    else
+      test_inputs(rest, charlist, cmds, acc)
+    end
   end
 
 
   @doc """
   Scramble a given input following the specified commands
   """
-  def encode(str, cmds) do
+  def encode(charlist, cmds) do
     cmds
+    |> Enum.reduce(charlist, &execute_wrapper/2)
+  end
+
+  defp parse_string(str) do
+    str
     |> String.trim
     |> String.split("\n")
     |> Enum.map(&String.trim/1)
     |> Enum.map(&convert_cmds/1)
-    |> Enum.reduce(String.to_charlist(str), &execute_wrapper/2)
-    |> to_string
   end
 
   defp convert_cmds(<<"swap position ", rest :: binary>>) do
@@ -62,9 +97,9 @@ defmodule Day21 do
   end
 
   defp execute_wrapper(cmd, str) do
-    IO.puts "#{inspect str}  -> #{inspect cmd}"
+    # IO.puts "#{inspect str}  -> #{inspect cmd}"
     result = execute(cmd, str)
-    IO.puts "#{inspect result}"
+    # IO.puts "#{inspect result}"
     result
   end
 

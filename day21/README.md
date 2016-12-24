@@ -39,3 +39,9 @@ You scrambled the password correctly, but you discover that you can't actually m
 
 What is the un-scrambled version of the scrambled password fbgdceah?
 
+# Usage
+
+```
+  iex(1)> Day21.decode_file "fbgdceah", "input.txt"
+  ['fdhgacbe']
+```

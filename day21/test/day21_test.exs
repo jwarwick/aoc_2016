@@ -13,6 +13,6 @@ defmodule Day21Test do
     rotate based on position of letter b
     rotate based on position of letter d
     """
-    assert "decab" == Day21.encode("abcde", cmds)
+    assert "abcde" == Day21.decode("decab", cmds)
   end
 end
