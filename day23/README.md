@@ -39,4 +39,17 @@ The rest of the electronics seem to place the keypad entry (the number of eggs, 
 
 What value should be sent to the safe?
 
+# Usage
 
+```
+  iex(3)> Day23.evaluate_file "input.txt", %Day23.State{a: 7}
+  %Day23.State{a: 11552, b: 1, c: 0, d: 0,
+   instructions: [{:cpy, :a, :b}, {:dec, :b}, {:cpy, :a, :d}, {:cpy, 0, :a},
+    {:cpy, :b, :c}, {:inc, :a}, {:dec, :c}, {:jnz, :c, -2}, {:dec, :d},
+    {:jnz, :d, -5}, {:dec, :b}, {:cpy, :b, :c}, {:cpy, :c, :d}, {:dec, :d},
+    {:inc, :c}, {:jnz, :d, -2}, {:tgl, :c}, {:cpy, -16, :c}, {:cpy, 1, :c},
+    {:cpy, 74, :c}, {:cpy, 88, :d}, {:inc, :a}, {:dec, :d}, {:jnz, :d, -2},
+    {:dec, :c}, {:jnz, :c, -5}], pc: 26}
+  iex(4)> v(3).a
+  11552
+```
