@@ -53,3 +53,27 @@ What value should be sent to the safe?
   iex(4)> v(3).a
   11552
 ```
+--- Part Two ---
+
+The safe doesn't open, but it does make several angry noises to express its frustration.
+
+You're quite sure your logic is working correctly, so the only other thing is... you check the painting again. As it turns out, colored eggs are still eggs. Now you count 12.
+
+As you run the program with this new input, the prototype computer begins to overheat. You wonder what's taking so long, and whether the lack of any instruction more powerful than "add one" has anything to do with it. Don't bunnies usually multiply?
+
+Anyway, what value should actually be sent to the safe?
+
+# Usage
+
+```
+  iex(1)> Day23.evaluate_file("input.txt", %Day23.State{a: 12})
+  %Day23.State{a: 479008112, b: 1, c: 0, d: 0,
+   instructions: [{:cpy, :a, :b}, {:dec, :b}, {:cpy, :a, :d}, {:cpy, 0, :a},
+    {:cpy, :b, :c}, {:inc, :a}, {:dec, :c}, {:jnz, :c, -2}, {:dec, :d},
+    {:jnz, :d, -5}, {:dec, :b}, {:cpy, :b, :c}, {:cpy, :c, :d}, {:dec, :d},
+    {:inc, :c}, {:jnz, :d, -2}, {:tgl, :c}, {:cpy, -16, :c}, {:cpy, 1, :c},
+    {:cpy, 74, :c}, {:cpy, 88, :d}, {:inc, :a}, {:dec, :d}, {:jnz, :d, -2},
+    {:dec, :c}, {:jnz, :c, -5}], pc: 26}
+  iex(2)> v(1).a
+  479008112
+```
