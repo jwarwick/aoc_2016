@@ -24,4 +24,9 @@ Given the actual salt in your puzzle input, what index produces your 64th one-ti
 
 Your puzzle input is cuanljph.
 
+# Usage
 
+```
+  iex(1)> Day14.find_index 64, "cuanljph"
+  23769
+```
