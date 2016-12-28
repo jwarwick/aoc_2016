@@ -27,4 +27,9 @@ The code takes a value (via register a) that describes the signal to generate, b
 
 What is the lowest positive integer that can be used to initialize register a and cause the code to output a clock signal of 0, 1, 0, 1... repeating forever?
 
+# Usage
 
+```
+  iex(5)> Day25.evaluate_file "input.txt"
+  196
+```
