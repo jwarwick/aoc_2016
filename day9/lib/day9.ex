@@ -8,7 +8,6 @@ defmodule Day9 do
     |> File.read!
     |> String.trim
     |> decompress
-    |> String.length
   end
 
   @doc """
@@ -17,12 +16,13 @@ defmodule Day9 do
   def decompress(str) do
     str
     |> String.to_charlist
-    |> decode([])
-    |> to_string
+    |> decode()
   end
 
-  defp decode([], acc), do: Enum.reverse(acc)
-  defp decode([?( | rest], acc) do
+  defp decode(list), do: decode(list, 0)
+
+  defp decode([], cnt), do: cnt
+  defp decode([?( | rest], cnt) do
     {cmd, remainder} = Enum.split_while(rest, &(&1 != ?)))
     remainder = Enum.drop(remainder, 1)
     [num_chars, repeats] = 
@@ -31,12 +31,12 @@ defmodule Day9 do
       |> String.split("x")
       |> Enum.map(&String.to_integer/1)
     chars = Enum.slice(remainder, 0, num_chars)
-    dups = List.duplicate(chars, repeats)
+    chars_count = repeats * decode(chars)
     remainder = Enum.drop(remainder, num_chars)
-    decode(remainder, [dups | acc])
+    decode(remainder, cnt + chars_count)
   end
-  defp decode([x | rest], acc) do
-    decode(rest, [x | acc])
+  defp decode([x | rest], cnt) do
+    decode(rest, cnt + 1)
   end
 
 end
