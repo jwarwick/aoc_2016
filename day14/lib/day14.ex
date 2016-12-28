@@ -4,7 +4,7 @@ defmodule Day14 do
   """
 
   defmodule State do
-    defstruct curr_idx: 0, remaining: 0, salt: nil
+    defstruct curr_idx: 0, remaining: 0, salt: nil, cache: Map.new
   end
 
   @doc """
@@ -15,38 +15,64 @@ defmodule Day14 do
   end
 
   defp hash_search(%State{curr_idx: idx, remaining: 0}), do: idx-1
-  defp hash_search(state = %State{curr_idx: idx, salt: salt, remaining: remaining}) do
-    result = test_hash(salt, idx)
+  defp hash_search(state = %State{curr_idx: idx, salt: salt, remaining: remaining, cache: cache}) do
+    {result, cache} = test_hash(salt, idx, cache)
+    if result == true do
+      IO.puts "Key #{inspect idx}, remaining: #{inspect remaining}"
+    end
     remaining = case result do
       true -> remaining - 1
       _ -> remaining
     end
-    hash_search(%State{state | curr_idx: idx + 1, remaining: remaining})
+    hash_search(%State{state | curr_idx: idx + 1, remaining: remaining, cache: cache})
   end
 
-  def test_hash(salt, idx) do
-    md5 = compute_hash(salt, idx)
+  def test_hash(salt, idx, cache) do
+    {md5, cache} = compute_hash(salt, idx, cache)
     # IO.puts "idx: #{inspect idx}, testing: #{inspect md5}"
     case has_three?(md5) do
-      {true, match} -> test_sub_hash(match |> String.at(0) |> String.duplicate(5), salt, idx + 1, 1000)
-      _ -> false
+      {true, match} -> test_sub_hash(match |> String.at(0) |> String.duplicate(5), salt, idx + 1, 1000, cache)
+      _ -> {false, cache}
     end
   end
 
-  defp test_sub_hash(_str, _salt, _idx, 0), do: false
-  defp test_sub_hash(str, salt, idx, remaining) do
+  defp test_sub_hash(_str, _salt, _idx, 0, cache), do: {false, cache}
+  defp test_sub_hash(str, salt, idx, remaining, cache) do
     # IO.puts "Testing sub-hash: #{inspect idx}, remaining: #{inspect remaining}"
-    md5 = compute_hash(salt, idx)
+    {md5, cache} = compute_hash(salt, idx, cache)
     # IO.inspect md5
     if String.contains?(md5, str) do
-      true
+      {true, cache}
     else
-      test_sub_hash(str, salt, idx+1, remaining-1)
+      test_sub_hash(str, salt, idx+1, remaining-1, cache)
     end
   end
 
-  defp compute_hash(salt, idx) do
-    str = salt <> Integer.to_string(idx)
+  defp compute_hash(salt, idx, cache) do
+   case Map.fetch(cache, idx) do
+      {:ok, val} -> {val, cache}
+      :error -> update_hash(cache, salt, idx)
+    end
+  end
+
+  defp update_hash(hash, salt, idx) do
+    val = _compute_hash(salt, idx)
+    {val, Map.put(hash, idx, val)}
+  end
+
+  defp _compute_hash(salt, idx) do
+    # IO.puts "Computing hash #{inspect idx}"
+    salt <> Integer.to_string(idx)
+    |> hash
+    |> subhash(2016)
+  end
+
+  defp subhash(str, 0), do: str
+  defp subhash(str, remaining) do
+    subhash(hash(str), remaining - 1)
+  end
+
+  defp hash(str) do
     :crypto.hash(:md5 , str)
     |> Base.encode16()
     |> String.downcase
