@@ -19,4 +19,9 @@ Nodes A and B are not the same node.
 The data on node A (its Used) would fit on node B (its Avail).
 How many viable pairs of nodes are there?
 
+# Usage
 
+```
+  iex(3)> Day22.compute_viable_file "input.txt"
+  955
+``
