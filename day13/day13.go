@@ -14,10 +14,54 @@ func main() {
 	target := point{x: 31, y: 39}
 
 	m := createMaze(input)
-	fmt.Println(m)
 
 	part1 := shortestPath(m, start, target)
 	fmt.Println("Part 1: ", part1)
+
+	part2 := reachable(m, start, 50)
+	fmt.Println("Part 2: ", part2)
+}
+
+func reachable(m maze, start point, max uint) int {
+	seen := make(map[point]bool)
+	s := m.getCell(start)
+	if s != Open {
+		panic("Starting search from a Wall")
+	}
+	seen[start] = true
+	queue := list.New()
+	queue.PushBack(searchPoint{start, 0})
+	count := 1
+	reachable_search(queue, &m, &seen, max, &count)
+	return count
+}
+
+func reachable_search(q *list.List, m *maze, seen *map[point]bool, max uint, count *int) int {
+	elt := q.Front()
+	if elt == nil {
+		return -1
+	}
+	curr := elt.Value.(searchPoint)
+	q.Remove(elt)
+
+	if curr.depth >= max {
+		return -1
+	}
+
+	neighbors := curr.p.neighbors()
+	for _, n := range neighbors {
+		_, prs := (*seen)[n]
+		if !prs {
+			(*seen)[n] = true
+			t := m.getCell(n)
+			if Open == t {
+				q.PushBack(searchPoint{n, curr.depth + 1})
+				(*count)++
+			}
+		}
+	}
+
+	return reachable_search(q, m, seen, max, count)
 }
 
 func shortestPath(m maze, start point, target point) int {
