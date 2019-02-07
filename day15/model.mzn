@@ -5,7 +5,9 @@ int: n;
 array[1..n] of int: positions;
 array[1..n] of int: starts;
 
-var 0..1000000: t;
+var int: t;
+
+constraint t > 0;
 
 constraint forall (d in 1..n)
   (0 = (t + d + starts[d]) mod positions[d]);
