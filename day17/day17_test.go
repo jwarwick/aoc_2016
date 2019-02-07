@@ -22,3 +22,21 @@ func TestPath(t *testing.T) {
 		}
 	}
 }
+
+func TestLongestPath(t *testing.T) {
+	vars := []struct {
+		input  string
+		result int
+	}{
+		{"ihgpwlah", 370},
+		{"kglvqrro", 492},
+		{"ulqzkmiv", 830},
+	}
+
+	for _, v := range vars {
+		result := longestPath(v.input)
+		if result != v.result {
+			t.Errorf("Input: %s, expected: %d, got: %d", v.input, v.result, result)
+		}
+	}
+}

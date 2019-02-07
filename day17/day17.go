@@ -11,6 +11,39 @@ func main() {
 
 	part1 := shortestPath(input)
 	fmt.Println("Part 1: ", part1)
+
+	part2 := longestPath(input)
+	fmt.Println("Part 2: ", part2)
+}
+
+func longestPath(code string) int {
+	queue := list.New()
+	queue.PushBack(searchPoint{0, 0, ""})
+	return longestSearch(&code, queue, 0)
+}
+
+func longestSearch(code *string, q *list.List, longest int) int {
+	elt := q.Front()
+	if elt == nil {
+		return longest
+	}
+	curr := elt.Value.(searchPoint)
+	q.Remove(elt)
+
+	if curr.x == 3 && curr.y == 3 {
+		l := len(curr.path)
+		if l > longest {
+			longest = l
+		}
+		return longestSearch(code, q, longest)
+	}
+
+	neighbors := curr.neighbors(code)
+	for _, n := range neighbors {
+		q.PushBack(n)
+	}
+
+	return longestSearch(code, q, longest)
 }
 
 func shortestPath(code string) string {
