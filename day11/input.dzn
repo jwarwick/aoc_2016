@@ -1,0 +1,11 @@
+/*The first floor contains a thulium generator, a thulium-compatible microchip, a plutonium generator, and a strontium generator.*/
+/*The second floor contains a plutonium-compatible microchip and a strontium-compatible microchip.*/
+/*The third floor contains a promethium generator, a promethium-compatible microchip, a ruthenium generator, and a ruthenium-compatible microchip.*/
+/*The fourth floor contains nothing relevant.*/
+
+Items = {Elevator, TG, TM, PLG, PLM, SG, SM, PRG, PRM, RG, RM};
+start = [{Elevator, TG, TM, PLG, SG}, {PLM, SM}, {PRG, PRM, RG, RM}, {}];
+
+Generators = {TG, PLG, SG, PRG, RG};
+Microchips = {TM, PLM, SM, PRM, RM};
+mappings = [TG, TG, TG, PLG, PLG, SG, SG, PRG, PRG, RG, RG];
