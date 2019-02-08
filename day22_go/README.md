@@ -20,3 +20,5 @@ The data on node A (its Used) would fit on node B (its Avail).
 How many viable pairs of nodes are there?
 
 Answer: **955**
+
+Part 2 done by printing map and manually counting.

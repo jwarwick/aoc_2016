@@ -17,6 +17,42 @@ func main() {
 
 	part1 := viablePairs(&nodes)
 	fmt.Println("Part 1: ", part1)
+
+	grid := makeGrid(&nodes)
+	printGrid(&grid)
+}
+
+func printGrid(grid *[][]node) {
+	for _, r := range *grid {
+		for _, n := range r {
+			fmt.Printf("%s", n.toString(grid))
+		}
+		fmt.Printf("\n")
+	}
+}
+
+func makeGrid(nodes *[]node) [][]node {
+	maxRow := uint(0)
+	maxCol := uint(0)
+	for _, n := range *nodes {
+		if n.y > maxRow {
+			maxRow = n.y
+		}
+		if n.x > maxCol {
+			maxCol = n.x
+		}
+	}
+
+	grid := make([][]node, maxRow+1)
+	for idx, _ := range grid {
+		grid[idx] = make([]node, maxCol+1)
+	}
+
+	for _, n := range *nodes {
+		grid[n.y][n.x] = n
+	}
+
+	return grid
 }
 
 func viablePairs(nodes *[]node) int {
@@ -37,6 +73,25 @@ type node struct {
 	used uint
 }
 
+func (n node) toString(grid *[][]node) string {
+	if n.used == 0 {
+		return "_"
+	} else if n.x == 0 && n.y == 0 {
+		return "G"
+	} else if n.y == 0 && int(n.x) == len((*grid)[0])-1 {
+		return "S"
+	} else if n.movable(grid) {
+		return "."
+	} else {
+		return "#"
+	}
+}
+
+func (n node) movable(grid *[][]node) bool {
+	minSize := (*grid)[0][0].size
+	return n.used < minSize+100
+}
+
 func (n *node) free() uint {
 	return n.size - n.used
 }
@@ -54,12 +109,10 @@ func (a *node) viable(b *node) bool {
 
 func createNodes(input string) []node {
 	lines := splitInput(input)
-	nodes := make([]node, len(lines)-2)
+	lines = lines[2:]
+	nodes := make([]node, len(lines))
 	for idx, l := range lines {
-		if idx < 2 {
-			continue
-		}
-		nodes[idx-2] = parseLine(l)
+		nodes[idx] = parseLine(l)
 	}
 	return nodes
 }
