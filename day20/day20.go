@@ -16,8 +16,29 @@ func main() {
 
 	bl := createBlackList(string(input))
 
-	part1 := firstAvailable(&bl, 0, 9)
+	part1 := firstAvailable(&bl, 0, 4294967295)
 	fmt.Println("Part 1: ", part1)
+
+	part2 := countAvailable(&bl, 0, 4294967295)
+	fmt.Println("Part 2: ", part2)
+}
+
+func countAvailable(bl *[]blacklist, min uint, max uint) uint {
+	count := 0
+	val := min
+	idx := 0
+	for val <= max {
+		if idx >= len(*bl) || val < (*bl)[idx].start {
+			count++
+		}
+		if idx >= len(*bl) {
+			val++
+		} else {
+			val = (*bl)[idx].end + 1
+			idx++
+		}
+	}
+	return uint(count)
 }
 
 func firstAvailable(bl *[]blacklist, min uint, max uint) uint {
@@ -59,7 +80,25 @@ func createBlackList(input string) []blacklist {
 		bl[idx] = blacklist{start, end}
 	}
 	sort.Sort(byStart(bl))
-	return bl
+	return merge(bl)
+}
+
+func merge(bl []blacklist) []blacklist {
+	var merged []blacklist
+	merged = append(merged, bl[0])
+	prev := bl[0]
+	for _, curr := range bl {
+		if curr.start >= prev.start && curr.end <= prev.end {
+			continue
+		} else if curr.start <= prev.end && curr.end > prev.end {
+			merged[len(merged)-1].end = curr.end
+			prev = merged[len(merged)-1]
+		} else {
+			merged = append(merged, curr)
+			prev = curr
+		}
+	}
+	return merged
 }
 
 func parseLine(input string) (start uint, end uint) {

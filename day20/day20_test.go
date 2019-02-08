@@ -15,4 +15,10 @@ func TestPart1(t *testing.T) {
 	if expected != result {
 		t.Errorf("Expected: %d, got: %d", expected, result)
 	}
+
+	expected_count := uint(2)
+	count := countAvailable(&bl, 0, 9)
+	if expected_count != count {
+		t.Errorf("CountAvailabe Expected: %d, got: %d", expected_count, count)
+	}
 }
