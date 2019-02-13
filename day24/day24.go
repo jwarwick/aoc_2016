@@ -20,6 +20,8 @@ func main() {
 	// m.display()
 	part1 := m.shortestPath()
 	fmt.Println("Part 1: ", part1)
+	part2 := m.shortestCycle()
+	fmt.Println("Part 2: ", part2)
 }
 
 type floorNodes map[point]node
@@ -52,6 +54,24 @@ func (s searchPoint) neighbors() []point {
 		}
 	}
 	return n
+}
+
+func (m *floorMap) shortestCycle() int {
+	locs := make([]int, len(m.locations)-1)
+	for idx, _ := range locs {
+		locs[idx] = idx + 1
+	}
+	perms := permutations(locs)
+	best := math.MaxInt32
+	for _, p := range perms {
+		p = append([]int{0}, p...)
+		p = append(p, 0)
+		d := m.pathLength(p)
+		if d < best {
+			best = d
+		}
+	}
+	return best
 }
 
 func (m *floorMap) shortestPath() int {
