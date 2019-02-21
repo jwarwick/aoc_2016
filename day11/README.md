@@ -104,4 +104,4 @@ In this arrangement, it takes 11 steps to collect all of the objects at the four
 
 In your situation, what is the minimum number of steps required to bring all of the objects to the fourth floor?
 
-Answer:
+Answer: **31**
