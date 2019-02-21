@@ -15,6 +15,10 @@ func main() {
 	config1 := []pair{pair{1, 1}, pair{2, 1}, pair{2, 1}, pair{3, 3}, pair{3, 3}}
 	part1 := shortestPath(config1)
 	fmt.Println("Part 1: ", part1)
+
+	config2 := []pair{pair{1, 1}, pair{2, 1}, pair{2, 1}, pair{3, 3}, pair{3, 3}, pair{1, 1}, pair{1, 1}}
+	part2 := shortestPath(config2)
+	fmt.Println("Part 2: ", part2)
 }
 
 type pair struct {
