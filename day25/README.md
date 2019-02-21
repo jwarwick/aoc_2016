@@ -33,3 +33,24 @@ What is the lowest positive integer that can be used to initialize register a an
   iex(5)> Day25.evaluate_file "input.txt"
   196
 ```
+
+Your puzzle answer was **196**.
+
+The first half of this puzzle is complete! It provides one gold star: *
+
+# Part Two
+
+The antenna is ready. Now, all you need is the fifty stars required to generate the signal for the sleigh, but you don't have enough.
+
+You look toward the sky in desperation... suddenly noticing that a lone star has been installed at the top of the antenna! Only 49 more to go.
+
+You have enough stars to Transmit the Signal.
+
+You activate all fifty stars and transmit the signal. The star atop the antenna begins to glow.
+
+**Suddenly, you see the sleigh fly past you!**
+
+Looks like Santa was already waiting for your signal.
+
+Congratulations! You've finished every puzzle in Advent of Code 2016! I hope you had as much fun solving them as I had making them for you. I'd love to hear about your adventure; you can get in touch with me via contact info on my website or through Twitter.
+
